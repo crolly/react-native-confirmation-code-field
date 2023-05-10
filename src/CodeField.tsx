@@ -36,6 +36,7 @@ interface BaseProps {
   rootStyle?: ViewProps['style'];
   textInputStyle?: StyleProp<TextStyle>;
   cellCount?: number;
+  autoCapitalize?: boolean;
 }
 
 const DEFAULT_CELL_COUNT = 4;
@@ -52,6 +53,7 @@ function CodeFieldComponent(
     RootProps = {},
     RootComponent = View,
     InputComponent = TextInput,
+    autoCapitalize = true,
     ...rest
   }: Props & {InputComponent?: ComponentType<any>},
   ref: Ref<TextInput>,
@@ -81,7 +83,7 @@ function CodeFieldComponent(
         autoCorrect={false}
         blurOnSubmit={false}
         clearButtonMode="never"
-        autoCapitalize="characters"
+        autoCapitalize={autoCapitalize ? 'characters' : undefined}
         underlineColorAndroid="transparent"
         maxLength={cellCount}
         {...rest}
